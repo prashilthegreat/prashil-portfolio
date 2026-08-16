@@ -6,7 +6,7 @@ export default function Home() {
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Prashil Koirala, home">PK<span>.</span></a>
         <nav aria-label="Primary navigation">
-          <a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#about">About</a>
+          <a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#credentials">Credentials</a><a href="#about">About</a>
           <a className="nav-cta" href="mailto:namikazeprashil@gmail.com">Let&apos;s talk</a>
         </nav>
       </header>
@@ -60,6 +60,17 @@ export default function Home() {
           <div><span>01</span><h3>Support</h3><p>User-first troubleshooting, endpoint care, onboarding, resource access, and calm communication.</p></div>
           <div><span>02</span><h3>Build</h3><p>Cross-platform applications, cloud services, integrations, testing, analytics, and delivery pipelines.</p></div>
           <div><span>03</span><h3>Lead</h3><p>Agile rituals, sprint coordination, stakeholder updates, issue ownership, and practical team enablement.</p></div>
+        </div>
+      </section>
+
+      <section className="section credentials" id="credentials">
+        <div className="credential-count"><span>Verified learning</span><strong>64</strong><small>digital credentials</small></div>
+        <div className="credential-copy">
+          <p className="kicker">ACS + Skillsoft</p>
+          <h2>Always learning.<br /><em>Always current.</em></h2>
+          <p>My credential wallet reflects continuous development across technical support, modern IT, delivery, and professional effectiveness—issued through Skillsoft and the Australian Computer Society.</p>
+          <div className="credential-topics"><span>CompTIA A+ hardware</span><span>Cybersecurity</span><span>Project management</span><span>Agile</span><span>Machine learning</span><span>Career development</span></div>
+          <a className="button primary credential-link" href="https://acs-preview.digitalbadges.skillsoft.com/profile/prashilkoirala849784/wallet" target="_blank" rel="noreferrer">View verified badge wallet <span>↗</span></a>
         </div>
       </section>
 
