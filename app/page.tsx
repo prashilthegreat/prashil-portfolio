@@ -1,12 +1,75 @@
-const skills = ["Endpoint support", "Flutter", "Dart", "Firebase", "TypeScript", "Jira", "Google Cloud", "BigQuery", "CI/CD", "Stakeholder communication", "Agile delivery", "Technical troubleshooting"];
+"use client";
+
+import { useEffect, useState } from "react";
+
+const skills = ["Endpoint support", "User support", "Device setup", "Account & access support", "Hardware troubleshooting", "Software troubleshooting", "Remote support", "Ticket management", "User onboarding", "Technical documentation", "Security awareness", "Clear communication"];
+
+const tools = [
+  { name: "Microsoft 365", mark: "M365", tone: "orange", use: "Productivity & user support", tasks: ["Resolve app and sign-in issues", "Support licences and access", "Help users work across Microsoft apps"] },
+  { name: "Microsoft Entra ID", mark: "ID", tone: "blue", use: "Identity & access", tasks: ["Support user access", "Troubleshoot sign-ins", "Assist with groups and permissions"] },
+  { name: "Microsoft Intune", mark: "IN", tone: "blue", use: "Device management", tasks: ["Support enrolled endpoints", "Check device compliance", "Assist with app and policy delivery"] },
+  { name: "Exchange Online", mark: "EX", tone: "blue", use: "Email & mailbox support", tasks: ["Troubleshoot mail flow", "Support mailbox access", "Assist with shared mailboxes"] },
+  { name: "Active Directory", mark: "AD", tone: "navy", use: "Users, groups & access", tasks: ["Support user accounts", "Assist with group membership", "Resolve access issues"] },
+  { name: "PowerShell", mark: ">_", tone: "navy", use: "Administration & automation", tasks: ["Run administrative checks", "Automate repeatable tasks", "Gather troubleshooting details"] },
+  { name: "ConnectWise", mark: "CW", tone: "blue", use: "Service desk & ticketing", tasks: ["Log and triage support tickets", "Document troubleshooting and outcomes", "Track requests through to resolution"] },
+  { name: "3CX", mark: "3CX", tone: "navy", use: "Helpdesk communications", tasks: ["Handle helpdesk calls", "Support users remotely", "Keep users updated through resolution"] },
+  { name: "Google Cloud", mark: "G", tone: "multi", use: "Cloud services", tasks: ["Support cloud-based services", "Check logs and resources", "Assist with access and integrations"] },
+];
+
+const testimonials = [
+  { quote: "Prashil is a legend tech. No task is too big or small for him to carry out—and always with a smile.", name: "Alana Sampson", organisation: "North Australian Aboriginal Justice Agency" },
+  { quote: "Prashil was a superstar this morning, acting very promptly and efficiently to get me out of a bind. Thank you so much.", name: "Karen O’Brien", organisation: "Miwatj Health Aboriginal Corporation" },
+  { quote: "Prashil was a great help, as he always is.", name: "Kate Thompson", organisation: "Miwatj Health Aboriginal Corporation" },
+  { quote: "Prashil does a great job for MJDF.", name: "Joanna Stewart", organisation: "MJD Foundation" },
+  { quote: "Amy and Prashil were so friendly and helpful. Thank you.", name: "Chantal May", organisation: "North Australian Aboriginal Family Legal Service" },
+  { quote: "Prashil is awesome.", name: "Joanna Stewart", organisation: "MJD Foundation" },
+  { quote: "Thank you for the prompt service.", name: "Karen O’Brien", organisation: "Miwatj Health Aboriginal Corporation" },
+  { quote: "Prompt work!", name: "Paul Thompson", organisation: "Aboriginal Housing NT" },
+];
 
 export default function Home() {
+  const [flippedTools, setFlippedTools] = useState<Set<string>>(() => new Set());
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [themeToggleFloating, setThemeToggleFloating] = useState(false);
+
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem("portfolio-theme");
+    if (savedTheme === "dark") setTheme("dark");
+  }, []);
+
+  useEffect(() => {
+    const updateTogglePosition = () => setThemeToggleFloating(window.scrollY > 40);
+    updateTogglePosition();
+    window.addEventListener("scroll", updateTogglePosition, { passive: true });
+    return () => window.removeEventListener("scroll", updateTogglePosition);
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme(current => {
+      const next = current === "light" ? "dark" : "light";
+      window.localStorage.setItem("portfolio-theme", next);
+      return next;
+    });
+  };
+
+  const toggleTool = (name: string) => {
+    setFlippedTools(current => {
+      const next = new Set(current);
+      if (next.has(name)) next.delete(name);
+      else next.add(name);
+      return next;
+    });
+  };
+
   return (
-    <main>
+    <main className={`theme-${theme}`}>
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Prashil Koirala, home">PK<span>.</span></a>
         <nav aria-label="Primary navigation">
-          <a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#credentials">Credentials</a><a href="#about">About</a>
+          <a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#satisfaction">Feedback</a><a href="#credentials">Credentials</a><a href="#about">About</a>
+          <button className={`theme-toggle${themeToggleFloating ? " is-floating" : ""}`} type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === "light" ? "Emerge" : "Territory"} palette`} aria-pressed={theme === "dark"}>
+            <span aria-hidden="true">{theme === "light" ? "◐" : "☀"}</span>{theme === "light" ? "Emerge" : "Territory"}
+          </button>
           <a className="nav-cta" href="mailto:namikazeprashil@gmail.com">Let&apos;s talk</a>
         </nav>
       </header>
@@ -37,7 +100,7 @@ export default function Home() {
         <div className="timeline">
           <article className="job featured">
             <div className="job-meta"><span>2026 — NOW</span><span className="tag">CURRENT</span></div>
-            <div className="job-content"><h3>User &amp; Endpoint<br />Support Technician</h3><p className="company">Emerge IT</p><p>Supporting people and their devices with practical troubleshooting, clear communication, and a focus on getting work moving again.</p></div>
+            <div className="job-content"><h3>User &amp; Endpoint<br />Support Technician</h3><p className="company">Emerge IT</p><p>Supporting users and endpoints across Darwin and remote East Arnhem Land communities—including Nhulunbuy, Galiwinku, Gunbalanya, and Warruwi—with practical troubleshooting, clear communication, and a focus on keeping essential work moving.</p></div>
             <div className="job-number">01</div>
           </article>
           <article className="job">
@@ -57,10 +120,57 @@ export default function Home() {
         <div className="skills-intro"><p className="kicker light">Toolkit</p><h2>Broad enough to connect the dots.<br /><em>Focused enough to fix them.</em></h2></div>
         <div className="skill-cloud">{skills.map((skill, index) => <span key={skill} className={index % 4 === 0 ? "accent" : ""}>{skill}</span>)}</div>
         <div className="capabilities">
-          <div><span>01</span><h3>Support</h3><p>User-first troubleshooting, endpoint care, onboarding, resource access, and calm communication.</p></div>
-          <div><span>02</span><h3>Build</h3><p>Cross-platform applications, cloud services, integrations, testing, analytics, and delivery pipelines.</p></div>
-          <div><span>03</span><h3>Lead</h3><p>Agile rituals, sprint coordination, stakeholder updates, issue ownership, and practical team enablement.</p></div>
+          <div><span>01</span><h3>Diagnose</h3><p>Methodical troubleshooting across devices, software, accounts, connectivity, and everyday user issues.</p></div>
+          <div><span>02</span><h3>Support</h3><p>Responsive endpoint care, onboarding, access assistance, remote guidance, and clear user communication.</p></div>
+          <div><span>03</span><h3>Improve</h3><p>Accurate ticket notes, practical documentation, recurring-issue awareness, and dependable follow-through.</p></div>
         </div>
+      </section>
+
+      <section className="section tools-section" id="tools">
+        <div className="tools-heading">
+          <div><p className="kicker">Tools &amp; platforms</p><h2>Familiar tools.<br /><em>Practical outcomes.</em></h2></div>
+          <p>A Microsoft-first toolkit for supporting users, managing endpoints, resolving access issues, and keeping workplace technology moving.</p>
+        </div>
+        <div className="tool-grid">
+          {tools.map((tool, index) => {
+            const isFlipped = flippedTools.has(tool.name);
+            return (
+              <button className={`tool-card${isFlipped ? " is-flipped" : ""}`} key={tool.name} type="button" aria-pressed={isFlipped} onClick={() => toggleTool(tool.name)}>
+                <span className="tool-card-inner">
+                  <span className="tool-face tool-front">
+                    <span className="tool-index">{String(index + 1).padStart(2, "0")}</span>
+                    <span className={`tool-mark ${tool.tone}`} aria-hidden="true">{tool.mark}</span>
+                    <span className="tool-copy"><strong>{tool.name}</strong><small>{tool.use}</small></span>
+                    <span className="flip-hint">Click to explore ↗</span>
+                  </span>
+                  <span className="tool-face tool-back">
+                    <span className="tool-index">{String(index + 1).padStart(2, "0")}</span>
+                    <strong>{tool.name}</strong>
+                    <ul>{tool.tasks.map(task => <li key={task}>{task}</li>)}</ul>
+                    <span className="flip-hint">Click to return ↩</span>
+                  </span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="section satisfaction" id="satisfaction">
+        <div className="satisfaction-heading">
+          <div><p className="kicker">Client satisfaction</p><h2>Support people<br /><em>remember.</em></h2></div>
+          <div className="satisfaction-summary"><strong>8</strong><p>positive customer reviews<br />approved for sharing</p></div>
+        </div>
+        <div className="testimonial-grid">
+          {testimonials.map((testimonial, index) => (
+            <figure className="testimonial" key={`${testimonial.name}-${index}`}>
+              <span className="quote-mark" aria-hidden="true">“</span>
+              <blockquote>{testimonial.quote}</blockquote>
+              <figcaption><strong>{testimonial.name}</strong><span>{testimonial.organisation}</span></figcaption>
+            </figure>
+          ))}
+        </div>
+        <p className="testimonial-note">Feedback collected through verified support reviews and displayed only where marketing permission was granted.</p>
       </section>
 
       <section className="section credentials" id="credentials">
@@ -75,10 +185,12 @@ export default function Home() {
       </section>
 
       <section className="section about" id="about">
-        <div><p className="kicker">A little context</p><h2>Technology works best<br />when people feel <em>supported.</em></h2></div>
+        <div><p className="kicker">About me</p><h2>Technology works best<br />when people feel <em>supported.</em></h2></div>
         <div className="about-copy">
-          <p>I bring together hands-on technical support, software development, and delivery leadership. That mix helps me see the whole problem — from the person experiencing it to the system behind it.</p>
+          <p>I bring together hands-on technical support, software development, and delivery leadership. My support work reaches users across Darwin and remote communities throughout East Arnhem Land, where dependable technology and clear communication make a meaningful difference.</p>
           <p>Based in Darwin, I hold a Master of Information Technology from Charles Darwin University and a Bachelor of Science in Computer Science and Information Technology from Tribhuvan University.</p>
+          <p>I&apos;m at my best when I can listen carefully, make a technical problem feel manageable, and leave the person—and the system—in a better place than I found them.</p>
+          <div className="about-values" aria-label="How I work"><span>Calm under pressure</span><span>Curious by default</span><span>Reliable follow-through</span></div>
           <div className="education"><div><span>2024</span><strong>Master of Information Technology</strong><small>Charles Darwin University</small></div><div><span>2021</span><strong>BSc Computer Science &amp; IT</strong><small>Tribhuvan University</small></div></div>
         </div>
       </section>
@@ -88,6 +200,10 @@ export default function Home() {
         <h2>Let&apos;s make technology<br /><em>feel effortless.</em></h2>
         <div className="footer-links"><a href="mailto:namikazeprashil@gmail.com">Email me ↗</a><a href="tel:+61457859515">Call me ↗</a><a href="https://www.linkedin.com/in/prashil-koirala-847777a0/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
         <div className="footer-base"><span>Prashil Koirala · Darwin, Australia</span><a href="#top">Back to top ↑</a></div>
+        <div className="footer-acknowledgement">
+          <p>I acknowledge the Larrakia people as the Traditional Custodians of Darwin, where I live and work, and pay my respects to Elders past and present. I also acknowledge the Traditional Custodians of the lands and waters across the East Arnhem Land communities I support.</p>
+          <span>© 2026 Prashil Koirala</span>
+        </div>
       </footer>
     </main>
   );
