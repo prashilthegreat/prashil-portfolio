@@ -172,6 +172,15 @@ footer h2 em{color:var(--cream)}
 .theme-dark .about .education div{border-color:rgba(174,184,229,.25)}
 .theme-dark .footer-acknowledgement{background:#0b0920;color:#aeb8e5}
 
+@media (max-width:1100px){
+.site-header nav>a:not(.nav-cta){display:none}
+.site-header nav{gap:12px}
+.theme-toggle.is-floating{width:48px;height:48px;padding:0;display:grid;place-items:center;border-radius:50%}
+.theme-toggle.is-floating .theme-label{display:none}
+.theme-toggle.is-floating .theme-icon{font-size:18px;line-height:1}
+.tool-grid{grid-template-columns:1fr 1fr}
+}
+
 @media (max-width:800px){.site-header{padding:0 22px;height:76px}
 .brand{gap:0}
 .brand-mark{width:52px;height:36px}
@@ -202,7 +211,7 @@ h1{font-size:clamp(52px,17vw,78px)}
 .capabilities{grid-template-columns:1fr}
 .capabilities>div,.capabilities>div+div{padding:30px 0;border-right:0;border-bottom:1px solid #63706b;min-height:0}
 .tools-heading{grid-template-columns:1fr;gap:25px;margin-bottom:45px}
-.tool-grid{grid-template-columns:1fr 1fr}
+.tool-grid{grid-template-columns:1fr}
 .tool-grid{gap:16px}
 .tool-card,.tool-card-inner{min-height:220px;height:220px}
 .tool-face{padding:20px}

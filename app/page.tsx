@@ -76,7 +76,7 @@ export default function Home() {
         <nav aria-label="Primary navigation">
           <a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#satisfaction">Feedback</a><a href="#credentials">Credentials</a><a href="#about">About</a>
           <button className={`theme-toggle${themeToggleFloating ? " is-floating" : ""}`} type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === "light" ? "Emerge" : "Territory"} palette`} aria-pressed={theme === "dark"}>
-            <span aria-hidden="true">{theme === "light" ? "◐" : "☀"}</span>{theme === "light" ? "Emerge" : "Territory"}
+            <span className="theme-icon" aria-hidden="true">{theme === "light" ? "◐" : "☀"}</span><span className="theme-label">{theme === "light" ? "Emerge" : "Territory"}</span>
           </button>
           <a className="nav-cta" href="mailto:namikazeprashil@gmail.com">Let&apos;s talk</a>
         </nav>
