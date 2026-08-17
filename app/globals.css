@@ -154,6 +154,7 @@ footer h2 em{color:var(--cream)}
 .footer-acknowledgement span{font-size:13px;letter-spacing:.03em}
 
 .theme-dark .intro{color:#34305f}
+.theme-dark .proof-strip{color:#f3f3fc}
 .theme-dark .tools-heading>p{color:#4d4878}
 .theme-dark .tool-card:hover .tool-front,.theme-dark .tool-card:focus-visible .tool-front{background:#dfe0eb}
 .theme-dark .tool-mark.orange{background:#4d47cc}.theme-dark .tool-mark.blue{background:#6171c6}.theme-dark .tool-mark.navy{background:#1f1c53}.theme-dark .tool-mark.multi{background:linear-gradient(135deg,#1f1c53 0 34%,#4d47cc 34% 68%,#8593d8 68%)}
