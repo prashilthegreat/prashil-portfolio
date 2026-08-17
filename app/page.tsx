@@ -64,7 +64,15 @@ export default function Home() {
   return (
     <main className={`theme-${theme}`}>
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="Prashil Koirala, home">PK<span>.</span></a>
+        <a className="brand" href="#top" aria-label="Prashil Koirala, home">
+          <svg className="brand-mark" viewBox="0 0 64 44" role="img" aria-hidden="true">
+            <path className="brand-frame" d="M15 4H7v36h8M49 4h8v36h-8" />
+            <path className="brand-letters" d="M19 34V10h8c6 0 9 3 9 8s-3 8-9 8h-8M38 10v24M48 10 39 22l9 12" />
+            <circle cx="7" cy="4" r="3" />
+            <circle cx="57" cy="40" r="3" />
+          </svg>
+          <span className="brand-name">Prashil Koirala</span>
+        </a>
         <nav aria-label="Primary navigation">
           <a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#satisfaction">Feedback</a><a href="#credentials">Credentials</a><a href="#about">About</a>
           <button className={`theme-toggle${themeToggleFloating ? " is-floating" : ""}`} type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === "light" ? "Emerge" : "Territory"} palette`} aria-pressed={theme === "dark"}>
@@ -76,7 +84,7 @@ export default function Home() {
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p className="eyebrow"><span /> Darwin, Australia · Available for opportunities</p>
+          <p className="eyebrow"><span /> Darwin, Australia</p>
           <h1>IT support instinct.<br /><em>Developer mindset.</em></h1>
           <p className="intro">I&apos;m Prashil Koirala — an endpoint support technician and application developer who turns technical friction into calm, reliable experiences.</p>
           <div className="hero-actions">
@@ -198,7 +206,11 @@ export default function Home() {
       <footer>
         <p className="kicker light">Have a role or project in mind?</p>
         <h2>Let&apos;s make technology<br /><em>feel effortless.</em></h2>
-        <div className="footer-links"><a href="mailto:namikazeprashil@gmail.com">Email me ↗</a><a href="tel:+61457859515">Call me ↗</a><a href="https://www.linkedin.com/in/prashil-koirala-847777a0/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
+        <div className="footer-links">
+          <a href="mailto:namikazeprashil@gmail.com" aria-label="Email Prashil"><span className="footer-link-icon" aria-hidden="true">✉</span><span className="footer-link-copy"><small>Write to me</small><strong>Email</strong></span><span className="footer-link-arrow" aria-hidden="true">↗</span></a>
+          <a href="tel:+61457859515" aria-label="Call Prashil"><span className="footer-link-icon" aria-hidden="true">☎</span><span className="footer-link-copy"><small>Start a conversation</small><strong>Call</strong></span><span className="footer-link-arrow" aria-hidden="true">↗</span></a>
+          <a href="https://www.linkedin.com/in/prashil-koirala-847777a0/" target="_blank" rel="noreferrer" aria-label="Visit Prashil's LinkedIn"><span className="footer-link-icon linkedin-icon" aria-hidden="true">in</span><span className="footer-link-copy"><small>Connect professionally</small><strong>LinkedIn</strong></span><span className="footer-link-arrow" aria-hidden="true">↗</span></a>
+        </div>
         <div className="footer-base"><span>Prashil Koirala · Darwin, Australia</span><a href="#top">Back to top ↑</a></div>
         <div className="footer-acknowledgement">
           <p>I acknowledge the Larrakia people as the Traditional Custodians of Darwin, where I live and work, and pay my respects to Elders past and present. I also acknowledge the Traditional Custodians of the lands and waters across the East Arnhem Land communities I support.</p>
