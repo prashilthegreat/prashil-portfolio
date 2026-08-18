@@ -17,14 +17,25 @@ const tools = [
 ];
 
 const testimonials = [
+  { quote: "Prompt work!", name: "Verified client", organisation: "Aboriginal housing organisation" },
+  { quote: "Thanks for the impressive work, Prashil!", name: "Verified client", organisation: "Community-controlled health service" },
+  { quote: "Quick response, efficient assistance, lovely staff.", name: "Verified client", organisation: "Remote community services organisation" },
+  { quote: "Thank you for actioning my request to upgrade my computer.", name: "Verified client", organisation: "Community-controlled health service" },
+  { quote: "Prashil does a great job for our team.", name: "Verified client", organisation: "Disability and health support organisation" },
+  { quote: "The IT technician was so good at his work.", name: "Verified client", organisation: "Community-controlled health service" },
+  { quote: "Fast and easy.", name: "Verified client", organisation: "Community-controlled health service" },
+  { quote: "The support team always delivers prompt and professional service.", name: "Verified client", organisation: "Community-controlled health service" },
+  { quote: "Prashil is always helpful.", name: "Verified client", organisation: "Community-controlled health service" },
+  { quote: "The support team and Prashil were so friendly and helpful. Thank you.", name: "Verified client", organisation: "Aboriginal family legal service" },
+  { quote: "Prashil’s work was good as always—prompt and quickly resolved.", name: "Verified client", organisation: "Community-controlled health service" },
+  { quote: "Prashil was as efficient and helpful as ever.", name: "Verified client", organisation: "Community-controlled health service" },
+  { quote: "Amazing help today and came on site to fix the issue straight away—everything was sorted within the hour. Absolutely tops!", name: "Verified client", organisation: "Aboriginal legal services organisation" },
+  { quote: "Prashil was a great help, as he always is.", name: "Verified client", organisation: "Community-controlled health service" },
+  { quote: "Prashil was prompt, friendly and efficient. Thanks.", name: "Verified client", organisation: "Community-controlled health service" },
   { quote: "Prashil is a legend tech. No task is too big or small for him to carry out—and always with a smile.", name: "Verified client", organisation: "Aboriginal legal services organisation" },
   { quote: "Prashil was a superstar this morning, acting very promptly and efficiently to get me out of a bind. Thank you so much.", name: "Verified client", organisation: "Community-controlled health service" },
-  { quote: "Prashil was a great help, as he always is.", name: "Verified client", organisation: "Community-controlled health service" },
-  { quote: "Prashil does a great job for our team.", name: "Verified client", organisation: "Disability and health support organisation" },
-  { quote: "The support team and Prashil were so friendly and helpful. Thank you.", name: "Verified client", organisation: "Aboriginal family legal service" },
   { quote: "Prashil is awesome.", name: "Verified client", organisation: "Disability and health support organisation" },
   { quote: "Thank you for the prompt service.", name: "Verified client", organisation: "Community-controlled health service" },
-  { quote: "Prompt work!", name: "Verified client", organisation: "Aboriginal housing organisation" },
 ];
 
 export default function Home() {
@@ -167,7 +178,7 @@ export default function Home() {
       <section className="section satisfaction" id="satisfaction">
         <div className="satisfaction-heading">
           <div><p className="kicker">Client satisfaction</p><h2>Support people<br /><em>remember.</em></h2></div>
-          <div className="satisfaction-summary"><strong>8</strong><p>positive customer reviews<br />approved for sharing</p></div>
+          <div className="satisfaction-summary"><strong>{testimonials.length}</strong><p>positive customer reviews<br />presented anonymously</p></div>
         </div>
         <div className="testimonial-grid">
           {testimonials.map((testimonial, index) => (
@@ -178,7 +189,7 @@ export default function Home() {
             </figure>
           ))}
         </div>
-        <p className="testimonial-note">Feedback collected through verified support reviews and displayed only where marketing permission was granted.</p>
+        <p className="testimonial-note">Feedback collected through verified support reviews and anonymised to remove people, organisations, ticket details, and identifying references.</p>
       </section>
 
       <section className="section credentials" id="credentials">
