@@ -17,14 +17,14 @@ const tools = [
 ];
 
 const testimonials = [
-  { quote: "Prashil is a legend tech. No task is too big or small for him to carry out—and always with a smile.", name: "Alana Sampson", organisation: "North Australian Aboriginal Justice Agency" },
-  { quote: "Prashil was a superstar this morning, acting very promptly and efficiently to get me out of a bind. Thank you so much.", name: "Karen O’Brien", organisation: "Miwatj Health Aboriginal Corporation" },
-  { quote: "Prashil was a great help, as he always is.", name: "Kate Thompson", organisation: "Miwatj Health Aboriginal Corporation" },
-  { quote: "Prashil does a great job for MJDF.", name: "Joanna Stewart", organisation: "MJD Foundation" },
-  { quote: "Amy and Prashil were so friendly and helpful. Thank you.", name: "Chantal May", organisation: "North Australian Aboriginal Family Legal Service" },
-  { quote: "Prashil is awesome.", name: "Joanna Stewart", organisation: "MJD Foundation" },
-  { quote: "Thank you for the prompt service.", name: "Karen O’Brien", organisation: "Miwatj Health Aboriginal Corporation" },
-  { quote: "Prompt work!", name: "Paul Thompson", organisation: "Aboriginal Housing NT" },
+  { quote: "Prashil is a legend tech. No task is too big or small for him to carry out—and always with a smile.", name: "Verified client", organisation: "Aboriginal legal services organisation" },
+  { quote: "Prashil was a superstar this morning, acting very promptly and efficiently to get me out of a bind. Thank you so much.", name: "Verified client", organisation: "Community-controlled health service" },
+  { quote: "Prashil was a great help, as he always is.", name: "Verified client", organisation: "Community-controlled health service" },
+  { quote: "Prashil does a great job for our team.", name: "Verified client", organisation: "Disability and health support organisation" },
+  { quote: "The support team and Prashil were so friendly and helpful. Thank you.", name: "Verified client", organisation: "Aboriginal family legal service" },
+  { quote: "Prashil is awesome.", name: "Verified client", organisation: "Disability and health support organisation" },
+  { quote: "Thank you for the prompt service.", name: "Verified client", organisation: "Community-controlled health service" },
+  { quote: "Prompt work!", name: "Verified client", organisation: "Aboriginal housing organisation" },
 ];
 
 export default function Home() {
@@ -75,8 +75,8 @@ export default function Home() {
         </a>
         <nav aria-label="Primary navigation">
           <a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#satisfaction">Feedback</a><a href="#credentials">Credentials</a><a href="#about">About</a>
-          <button className={`theme-toggle${themeToggleFloating ? " is-floating" : ""}`} type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === "light" ? "Emerge" : "Territory"} palette`} aria-pressed={theme === "dark"}>
-            <span className="theme-icon" aria-hidden="true">{theme === "light" ? "◐" : "☀"}</span><span className="theme-label">{theme === "light" ? "Emerge" : "Territory"}</span>
+          <button className={`theme-toggle${themeToggleFloating ? " is-floating" : ""}`} type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === "light" ? "Digital" : "Territory"} palette`} aria-pressed={theme === "dark"}>
+            <span className="theme-icon" aria-hidden="true">{theme === "light" ? "◐" : "☀"}</span><span className="theme-label">{theme === "light" ? "Digital" : "Territory"}</span>
           </button>
           <a className="nav-cta" href="mailto:namikazeprashil@gmail.com">Let&apos;s talk</a>
         </nav>
@@ -95,7 +95,7 @@ export default function Home() {
         <aside className="role-card" aria-label="Current role">
           <div className="card-index">01 / CURRENT</div>
           <div><p className="card-label">Now supporting</p><h2>Users &amp;<br />endpoints</h2></div>
-          <div className="card-footer"><div><strong>Emerge IT</strong><span>02 Feb 2026 — Present</span></div><div className="signal" aria-hidden="true"><i /><i /><i /></div></div>
+          <div className="card-footer"><div><strong>Managed IT services provider</strong><span>02 Feb 2026 — Present</span></div><div className="signal" aria-hidden="true"><i /><i /><i /></div></div>
         </aside>
       </section>
 
@@ -108,17 +108,17 @@ export default function Home() {
         <div className="timeline">
           <article className="job featured">
             <div className="job-meta"><span>2026 — NOW</span><span className="tag">CURRENT</span></div>
-            <div className="job-content"><h3>User &amp; Endpoint<br />Support Technician</h3><p className="company">Emerge IT</p><p>Supporting users and endpoints across Darwin and remote East Arnhem Land communities—including Nhulunbuy, Galiwinku, Gunbalanya, and Warruwi—with practical troubleshooting, clear communication, and a focus on keeping essential work moving.</p></div>
+            <div className="job-content"><h3>User &amp; Endpoint<br />Support Technician</h3><p className="company">Managed IT services provider</p><p>Supporting users and endpoints across Darwin and remote East Arnhem Land communities—including Nhulunbuy, Galiwinku, Gunbalanya, and Warruwi—with practical troubleshooting, clear communication, and a focus on keeping essential work moving.</p></div>
             <div className="job-number">01</div>
           </article>
           <article className="job">
             <div className="job-meta"><span>2021 — 2023</span></div>
-            <div className="job-content"><h3>Scrum Master</h3><p className="company">Parentiv, Inc.</p><p>Led daily ceremonies, Jira workflows, sprint delivery, stakeholder communication, staff onboarding, helpdesk support, and Slack development automation.</p></div>
+            <div className="job-content"><h3>Scrum Master</h3><p className="company">Software technology company</p><p>Led daily ceremonies, Jira workflows, sprint delivery, stakeholder communication, staff onboarding, helpdesk support, and Slack development automation.</p></div>
             <div className="job-number">02</div>
           </article>
           <article className="job">
             <div className="job-meta"><span>2020 — 2021</span></div>
-            <div className="job-content"><h3>Application Developer</h3><p className="company">Parentiv, Inc.</p><p>Built Android, iOS, web, and admin experiences with Flutter and Dart, backed by Firebase, Cloud Functions, Google Cloud, analytics, testing, and automated delivery.</p></div>
+            <div className="job-content"><h3>Application Developer</h3><p className="company">Software technology company</p><p>Built Android, iOS, web, and admin experiences with Flutter and Dart, backed by Firebase, Cloud Functions, Google Cloud, analytics, testing, and automated delivery.</p></div>
             <div className="job-number">03</div>
           </article>
         </div>

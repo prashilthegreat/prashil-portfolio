@@ -148,7 +148,7 @@ footer h2 em{color:var(--cream)}
 .footer-link-arrow{font-size:15px}
 .footer-links a:hover,.footer-links a:focus-visible{gap:17px;opacity:.72}
 .footer-links a:focus-visible{outline:2px solid white;outline-offset:5px}
-.footer-base{border-top:1px solid rgba(16,34,28,.4);padding-top:25px;display:flex;justify-content:space-between;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.09em}
+.footer-base{color:white;border-top:1px solid rgba(255,255,255,.62);padding-top:25px;display:flex;justify-content:space-between;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.09em}
 .footer-acknowledgement{background:#10221c;color:#aeb8b4;margin:75px calc(-1 * max(42px,calc((100vw - 1236px)/2))) -36px;padding:46px max(42px,calc((100vw - 1236px)/2)) 34px}
 .footer-acknowledgement p{max-width:1200px;margin:0 0 55px;font-size:17px;line-height:1.7}
 .footer-acknowledgement span{font-size:13px;letter-spacing:.03em}
