@@ -6,7 +6,7 @@ const skills = ["Endpoint support", "User support", "Device setup", "Account & a
 
 const tools = [
   { name: "Microsoft 365", mark: "M365", tone: "orange", use: "Productivity & user support", tasks: ["Resolve app and sign-in issues", "Support licences and access", "Help users work across Microsoft apps"] },
-  { name: "Microsoft Entra ID", mark: "ID", tone: "blue", use: "Identity & access", tasks: ["Support user access", "Troubleshoot sign-ins", "Assist with groups and permissions"] },
+  { name: "Microsoft Entra", mark: "EN", tone: "blue", use: "Identity & access", tasks: ["Support user access", "Troubleshoot sign-ins", "Assist with groups and permissions"] },
   { name: "Microsoft Intune", mark: "IN", tone: "blue", use: "Device management", tasks: ["Support enrolled endpoints", "Check device compliance", "Assist with app and policy delivery"] },
   { name: "Exchange Online", mark: "EX", tone: "blue", use: "Email & mailbox support", tasks: ["Troubleshoot mail flow", "Support mailbox access", "Assist with shared mailboxes"] },
   { name: "Active Directory", mark: "AD", tone: "navy", use: "Users, groups & access", tasks: ["Support user accounts", "Assist with group membership", "Resolve access issues"] },
@@ -166,8 +166,8 @@ export default function Home() {
       <section className="hero" id="top">
         <div className="hero-copy">
           <p className="eyebrow"><span /> Darwin, Australia</p>
-          <h1>IT support instinct.<br /><em>Developer mindset.</em></h1>
-          <p className="intro">I&apos;m Prashil Koirala — an endpoint support technician and application developer who turns technical friction into calm, reliable experiences.</p>
+          <h1>Calm user support.<br /><em>Reliable endpoints.</em></h1>
+          <p className="intro">I&apos;m Prashil Koirala — a user and endpoint support technician helping people stay productive across their devices, accounts, Microsoft 365 services, and everyday connectivity. I bring patient troubleshooting, clear communication, and dependable follow-through to every request.</p>
           <div className="hero-actions">
             <a className="button primary" href="#experience">Explore my work <span>↘</span></a>
             <a className="button text" href={resumeHref} target="_blank" rel="noreferrer">View résumé ↗</a>
@@ -182,26 +182,27 @@ export default function Home() {
       </section>
 
       <section className="proof-strip" aria-label="Career highlights">
-        <div className="proof-inner"><div><strong>03</strong><span>Professional roles</span></div><div><strong>02</strong><span>Technology degrees</span></div><div><strong>03</strong><span>App platforms shipped</span></div><p>Support that understands the system.<br />Development that understands the user.</p></div>
+        <p className="proof-title"><span>Currently supporting</span></p>
+        <div className="proof-inner"><div><strong>1,000+</strong><span>Users</span></div><div><strong>2,000+</strong><span>Endpoints</span></div><div><strong>30+</strong><span>Remote locations</span></div><p>Calm support. Clear communication.<br />Reliable outcomes.</p></div>
       </section>
 
       <section className="section experience" id="experience">
-        <div className="section-heading"><p className="kicker">Selected experience</p><h2>From the helpdesk<br />to the <em>codebase.</em></h2></div>
+        <div className="section-heading"><p className="kicker">Selected experience</p><h2>Technology in<br />service of <em>people.</em></h2></div>
         <div className="timeline">
           <article className="job featured">
-            <div className="job-meta"><span>2026 — NOW</span><span className="tag">CURRENT</span></div>
-            <div className="job-content"><h3>User &amp; Endpoint<br />Support Technician</h3><p className="company">Emerge IT</p><p>Supporting users and endpoints across Darwin and remote East Arnhem Land communities—including Nhulunbuy, Galiwinku, Gunbalanya, and Warruwi—with practical troubleshooting, clear communication, and a focus on keeping essential work moving.</p></div>
-            <div className="job-number">01</div>
+            <div className="job-topline"><span>01 / CURRENT CHAPTER</span><span>FEB 2026 — NOW</span></div>
+            <div className="job-content"><p className="company">Emerge IT</p><h3>User &amp; Endpoint<br />Support Technician</h3><p>Supporting users and endpoints across Darwin and remote East Arnhem Land communities with practical troubleshooting, clear communication, and a focus on keeping essential work moving.</p></div>
+            <div className="job-tags" aria-label="Role focus"><span>Endpoint care</span><span>Microsoft 365</span><span>Remote support</span><span>Site deployments</span></div>
           </article>
           <article className="job">
-            <div className="job-meta"><span>2021 — 2023</span></div>
-            <div className="job-content"><h3>Scrum Master</h3><p className="company">Parentiv</p><p>Led daily ceremonies, Jira workflows, sprint delivery, stakeholder communication, staff onboarding, helpdesk support, and Slack development automation.</p></div>
-            <div className="job-number">02</div>
+            <div className="job-topline"><span>02</span><span>OCT 2021 — JAN 2023</span></div>
+            <div className="job-content"><p className="company">Parentiv</p><h3>Scrum Master</h3><p>Led delivery ceremonies, Jira workflows and stakeholder communication while supporting onboarding, access and internal helpdesk needs.</p></div>
+            <div className="job-tags" aria-label="Role focus"><span>Delivery</span><span>Leadership</span><span>Helpdesk</span></div>
           </article>
           <article className="job">
-            <div className="job-meta"><span>2020 — 2021</span></div>
-            <div className="job-content"><h3>Application Developer</h3><p className="company">Parentiv</p><p>Built Android, iOS, web, and admin experiences with Flutter and Dart, backed by Firebase, Cloud Functions, Google Cloud, analytics, testing, and automated delivery.</p></div>
-            <div className="job-number">03</div>
+            <div className="job-topline"><span>03</span><span>DEC 2020 — OCT 2021</span></div>
+            <div className="job-content"><p className="company">Parentiv</p><h3>Application Developer</h3><p>Built Android, iOS, web and administration experiences with Flutter and Dart, backed by Firebase and Google Cloud.</p></div>
+            <div className="job-tags" aria-label="Role focus"><span>Flutter</span><span>Firebase</span><span>Product delivery</span></div>
           </article>
         </div>
       </section>

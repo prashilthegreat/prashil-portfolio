@@ -19,8 +19,8 @@ test("server-renders the portfolio", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Prashil Koirala \| IT Support &amp; Application Developer<\/title>/i);
-  assert.match(html, /IT support instinct/);
+  assert.match(html, /<title>Prashil Koirala \| User &amp; Endpoint Support<\/title>/i);
+  assert.match(html, /Calm user support/);
   assert.match(html, /User &amp; Endpoint<br\/>Support Technician/);
   assert.match(html, /My breakthrough into IT/);
   assert.match(html, /Client satisfaction/);
