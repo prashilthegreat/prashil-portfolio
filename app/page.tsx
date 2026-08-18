@@ -38,14 +38,17 @@ const testimonials = [
   { quote: "Thank you for the prompt service.", name: "Verified client", organisation: "Community-controlled health service" },
 ];
 
+const testimonialsPerPage = 6;
+
 export default function Home() {
   const [flippedTools, setFlippedTools] = useState<Set<string>>(() => new Set());
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [themeToggleFloating, setThemeToggleFloating] = useState(false);
+  const [testimonialPage, setTestimonialPage] = useState(1);
 
   useEffect(() => {
-    const savedTheme = window.localStorage.getItem("portfolio-theme");
-    if (savedTheme === "dark") setTheme("dark");
+    const savedTheme = window.localStorage.getItem("portfolio-theme-v2");
+    if (savedTheme === "light" || savedTheme === "dark") setTheme(savedTheme);
   }, []);
 
   useEffect(() => {
@@ -58,7 +61,7 @@ export default function Home() {
   const toggleTheme = () => {
     setTheme(current => {
       const next = current === "light" ? "dark" : "light";
-      window.localStorage.setItem("portfolio-theme", next);
+      window.localStorage.setItem("portfolio-theme-v2", next);
       return next;
     });
   };
@@ -70,6 +73,13 @@ export default function Home() {
       else next.add(name);
       return next;
     });
+  };
+
+  const testimonialPageCount = Math.ceil(testimonials.length / testimonialsPerPage);
+  const visibleTestimonials = testimonials.slice((testimonialPage - 1) * testimonialsPerPage, testimonialPage * testimonialsPerPage);
+
+  const changeTestimonialPage = (page: number) => {
+    setTestimonialPage(page);
   };
 
   return (
@@ -86,8 +96,8 @@ export default function Home() {
         </a>
         <nav aria-label="Primary navigation">
           <a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#satisfaction">Feedback</a><a href="#credentials">Credentials</a><a href="#about">About</a>
-          <button className={`theme-toggle${themeToggleFloating ? " is-floating" : ""}`} type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === "light" ? "Digital" : "Territory"} palette`} aria-pressed={theme === "dark"}>
-            <span className="theme-icon" aria-hidden="true">{theme === "light" ? "◐" : "☀"}</span><span className="theme-label">{theme === "light" ? "Digital" : "Territory"}</span>
+          <button className={`theme-toggle${themeToggleFloating ? " is-floating" : ""}`} type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === "light" ? "Emerge" : "Territory"} palette`} aria-pressed={theme === "dark"}>
+            <span className="theme-icon" aria-hidden="true">{theme === "light" ? "◐" : "☀"}</span><span className="theme-label">{theme === "light" ? "Emerge" : "Territory"}</span>
           </button>
           <a className="nav-cta" href="mailto:namikazeprashil@gmail.com">Let&apos;s talk</a>
         </nav>
@@ -180,9 +190,18 @@ export default function Home() {
           <div><p className="kicker">Client satisfaction</p><h2>Support people<br /><em>remember.</em></h2></div>
           <div className="satisfaction-summary"><strong>{testimonials.length}</strong><p>positive customer reviews<br />presented anonymously</p></div>
         </div>
-        <div className="testimonial-grid">
-          {testimonials.map((testimonial, index) => (
-            <figure className="testimonial" key={`${testimonial.name}-${index}`}>
+        <nav className="testimonial-pagination" aria-label="Client feedback pages">
+          <button type="button" onClick={() => changeTestimonialPage(testimonialPage - 1)} disabled={testimonialPage === 1} aria-label="Previous feedback page">← <span>Previous</span></button>
+          <div>
+            {Array.from({ length: testimonialPageCount }, (_, index) => index + 1).map(page => (
+              <button type="button" key={page} className={page === testimonialPage ? "active" : ""} onClick={() => changeTestimonialPage(page)} aria-label={`Feedback page ${page}`} aria-current={page === testimonialPage ? "page" : undefined}>{page}</button>
+            ))}
+          </div>
+          <button type="button" onClick={() => changeTestimonialPage(testimonialPage + 1)} disabled={testimonialPage === testimonialPageCount} aria-label="Next feedback page"><span>Next</span> →</button>
+        </nav>
+        <div className="testimonial-grid" aria-live="polite" aria-label={`Client feedback page ${testimonialPage} of ${testimonialPageCount}`}>
+          {visibleTestimonials.map((testimonial, index) => (
+            <figure className="testimonial" key={`${testimonialPage}-${index}`}>
               <span className="quote-mark" aria-hidden="true">“</span>
               <blockquote>{testimonial.quote}</blockquote>
               <figcaption><strong>{testimonial.name}</strong><span>{testimonial.organisation}</span></figcaption>
