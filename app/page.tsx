@@ -16,6 +16,48 @@ const tools = [
   { name: "Google Cloud", mark: "G", tone: "multi", use: "Cloud services", tasks: ["Support cloud-based services", "Check logs and resources", "Assist with access and integrations"] },
 ];
 
+const communities = [
+  { name: "Nhulunbuy", region: "East Arnhem", lat: -12.18043, lon: 136.77599 },
+  { name: "Galiwin’ku (Elcho Island)", region: "East Arnhem", lat: -12.01038, lon: 135.58711 },
+  { name: "Yirrkala", region: "East Arnhem", lat: -12.25392, lon: 136.88997 },
+  { name: "Gunyangara (Ski Beach)", region: "East Arnhem", lat: -12.2178, lon: 136.70523 },
+  { name: "Yurrwi (Milingimbi)", region: "East Arnhem", lat: -12.10003, lon: 134.91443 },
+  { name: "Birritjimi", region: "East Arnhem", lat: -12.1881, lon: 136.7089 },
+  { name: "Galupa", region: "East Arnhem", lat: -12.19245, lon: 136.68924 },
+  { name: "Dhanaya", region: "East Arnhem", lat: -12.48, lon: 136.73 },
+  { name: "Barunga", region: "Big Rivers", lat: -14.525, lon: 132.8648 },
+  { name: "Bulman", region: "Big Rivers", lat: -13.66581, lon: 134.33602 },
+  { name: "Jilkminggan", region: "Big Rivers", lat: -14.96674, lon: 133.29291 },
+  { name: "Manyallaluk", region: "Big Rivers", lat: -14.26931, lon: 132.8317 },
+  { name: "Mataranka", region: "Big Rivers", lat: -14.92788, lon: 133.06906 },
+  { name: "Minyerri", region: "Big Rivers", lat: -15.22162, lon: 134.08189 },
+  { name: "Ngukurr", region: "Big Rivers", lat: -14.73264, lon: 134.74329 },
+  { name: "Urapunga (Rittarangu)", region: "Big Rivers", lat: -14.70985, lon: 134.56572 },
+  { name: "Wugularr (Beswick)", region: "Big Rivers", lat: -14.55637, lon: 133.11604 },
+  { name: "Katherine", region: "Katherine", lat: -14.46462, lon: 132.2636 },
+  { name: "Binjari", region: "Katherine", lat: -14.54913, lon: 132.18595 },
+  { name: "Jodetluk (Gorge Camp)", region: "Katherine", lat: -14.3597, lon: 132.43306 },
+  { name: "Geyulkgan Ngurra (Walpiri Camp)", region: "Katherine", lat: -14.47361, lon: 132.2693 },
+  { name: "Kalkarindji", region: "Victoria Daly", lat: -17.44704, lon: 130.83346 },
+  { name: "Daguragu", region: "Victoria Daly", lat: -17.40043, lon: 130.80575 },
+  { name: "Lajamanu", region: "Victoria Daly", lat: -18.33578, lon: 130.63592 },
+  { name: "Timber Creek", region: "Victoria Daly", lat: -15.65621, lon: 130.48055 },
+  { name: "Yarralin", region: "Victoria Daly", lat: -16.44782, lon: 130.88207 },
+  { name: "Bulla", region: "Victoria Daly", lat: -15.76579, lon: 130.03977 },
+  { name: "Amanbidji", region: "Victoria Daly", lat: -16.42894, lon: 129.61849 },
+  { name: "Nitjpurru (Pigeon Hole)", region: "Victoria Daly", lat: -16.78411, lon: 131.22226 },
+  { name: "Lingara", region: "Victoria Daly", lat: -16.48682, lon: 130.64312 },
+];
+
+const journeyChapters = [
+  { period: "2016—2020", title: "Foundations in Nepal", summary: "Completed a Bachelor of Science in Computer Science and Information Technology at Tribhuvan University, building the foundation for a career in technology.", reflection: "This is where curiosity became discipline—and where I learned to understand systems before trying to improve them.", details: ["Computer science & IT", "Technical foundations", "Tribhuvan University"] },
+  { period: "Dec 2020—Jan 2023", title: "Building digital products", summary: "Worked as an Application Developer at Parentiv across mobile, web, and administration products using modern cloud-backed technologies.", reflection: "Shipping real products taught me that technology succeeds when it is reliable, understandable, and built around the person using it.", details: ["Flutter & Dart", "Firebase & cloud functions", "Android, iOS & web"] },
+  { period: "Completed 2024", title: "Studying in Australia", summary: "Moved to Australia in search of opportunity, made Darwin home, and completed a Master of Information Technology while continuing to work.", reflection: "Starting again in a new country demanded adaptability. Study gave me depth; working alongside it gave that knowledge purpose.", details: ["Software Engineering", "Cloud-testing research", "Charles Darwin University"] },
+  { period: "Katherine → Darwin", title: "From crew to department leadership", summary: "Started at McDonald’s in Katherine and was promoted to Department Manager at a larger Darwin restaurant—all while studying.", reflection: "Progressing from crew to leadership taught me to stay calm under pressure, develop people, and take ownership when things get difficult.", details: ["Team leadership & training", "Restaurant operations", "Service recovery under pressure"] },
+  { period: "Alongside my master’s", title: "Hospitality & community", summary: "Worked in bar operations at Katherine Country Club, strengthening customer service, teamwork, and community connection.", reflection: "Good service begins with reading the room, listening carefully, and making every person feel that their needs matter.", details: ["Customer service", "Bar operations", "Teamwork & communication"] },
+  { period: "Feb 2026—Now", title: "My breakthrough into IT", summary: "Joining Emerge IT Solutions became the point where my education, development, leadership, and service experience came together in hands-on IT support.", reflection: "This chapter brings everything together: technical instinct, patient service, practical leadership, and a commitment to keeping people connected.", details: ["Users, endpoints & Microsoft 365", "Site visits & deployments", "Darwin & remote communities"] },
+];
+
 const testimonials = [
   { quote: "Prompt work!", name: "Verified client", organisation: "Aboriginal housing organisation" },
   { quote: "Thanks for the impressive work, Prashil!", name: "Verified client", organisation: "Community-controlled health service" },
@@ -42,13 +84,16 @@ const testimonialsPerPage = 6;
 
 export default function Home() {
   const [flippedTools, setFlippedTools] = useState<Set<string>>(() => new Set());
+  const [selectedJourney, setSelectedJourney] = useState<number | null>(null);
   const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [themeToggleFloating, setThemeToggleFloating] = useState(false);
   const [testimonialPage, setTestimonialPage] = useState(1);
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("portfolio-theme-v2");
-    if (savedTheme === "light" || savedTheme === "dark") setTheme(savedTheme);
+    if (savedTheme === "light" || savedTheme === "dark") {
+      queueMicrotask(() => setTheme(savedTheme));
+    }
   }, []);
 
   useEffect(() => {
@@ -57,6 +102,19 @@ export default function Home() {
     window.addEventListener("scroll", updateTogglePosition, { passive: true });
     return () => window.removeEventListener("scroll", updateTogglePosition);
   }, []);
+
+  useEffect(() => {
+    if (selectedJourney === null) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedJourney(null);
+    };
+    document.body.classList.add("modal-open");
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.classList.remove("modal-open");
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [selectedJourney]);
 
   const toggleTheme = () => {
     setTheme(current => {
@@ -77,6 +135,8 @@ export default function Home() {
 
   const testimonialPageCount = Math.ceil(testimonials.length / testimonialsPerPage);
   const visibleTestimonials = testimonials.slice((testimonialPage - 1) * testimonialsPerPage, testimonialPage * testimonialsPerPage);
+  const selectedJourneyChapter = selectedJourney === null ? null : journeyChapters[selectedJourney];
+  const resumeHref = theme === "dark" ? "/Prashil-Koirala-Resume.pdf" : "/Prashil-Koirala-Resume-Territory.pdf";
 
   const changeTestimonialPage = (page: number) => {
     setTestimonialPage(page);
@@ -110,18 +170,19 @@ export default function Home() {
           <p className="intro">I&apos;m Prashil Koirala — an endpoint support technician and application developer who turns technical friction into calm, reliable experiences.</p>
           <div className="hero-actions">
             <a className="button primary" href="#experience">Explore my work <span>↘</span></a>
+            <a className="button text" href={resumeHref} target="_blank" rel="noreferrer">View résumé ↗</a>
             <a className="button text" href="https://www.linkedin.com/in/prashil-koirala-847777a0/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
           </div>
         </div>
         <aside className="role-card" aria-label="Current role">
           <div className="card-index">01 / CURRENT</div>
           <div><p className="card-label">Now supporting</p><h2>Users &amp;<br />endpoints</h2></div>
-          <div className="card-footer"><div><strong>Managed IT services provider</strong><span>02 Feb 2026 — Present</span></div><div className="signal" aria-hidden="true"><i /><i /><i /></div></div>
+          <div className="card-footer"><div><strong>Emerge IT</strong><span>02 Feb 2026 — Present</span></div><div className="signal" aria-hidden="true"><i /><i /><i /></div></div>
         </aside>
       </section>
 
       <section className="proof-strip" aria-label="Career highlights">
-        <div><strong>03</strong><span>Professional roles</span></div><div><strong>02</strong><span>Technology degrees</span></div><div><strong>03</strong><span>App platforms shipped</span></div><p>Support that understands the system.<br />Development that understands the user.</p>
+        <div className="proof-inner"><div><strong>03</strong><span>Professional roles</span></div><div><strong>02</strong><span>Technology degrees</span></div><div><strong>03</strong><span>App platforms shipped</span></div><p>Support that understands the system.<br />Development that understands the user.</p></div>
       </section>
 
       <section className="section experience" id="experience">
@@ -129,19 +190,51 @@ export default function Home() {
         <div className="timeline">
           <article className="job featured">
             <div className="job-meta"><span>2026 — NOW</span><span className="tag">CURRENT</span></div>
-            <div className="job-content"><h3>User &amp; Endpoint<br />Support Technician</h3><p className="company">Managed IT services provider</p><p>Supporting users and endpoints across Darwin and remote East Arnhem Land communities—including Nhulunbuy, Galiwinku, Gunbalanya, and Warruwi—with practical troubleshooting, clear communication, and a focus on keeping essential work moving.</p></div>
+            <div className="job-content"><h3>User &amp; Endpoint<br />Support Technician</h3><p className="company">Emerge IT</p><p>Supporting users and endpoints across Darwin and remote East Arnhem Land communities—including Nhulunbuy, Galiwinku, Gunbalanya, and Warruwi—with practical troubleshooting, clear communication, and a focus on keeping essential work moving.</p></div>
             <div className="job-number">01</div>
           </article>
           <article className="job">
             <div className="job-meta"><span>2021 — 2023</span></div>
-            <div className="job-content"><h3>Scrum Master</h3><p className="company">Software technology company</p><p>Led daily ceremonies, Jira workflows, sprint delivery, stakeholder communication, staff onboarding, helpdesk support, and Slack development automation.</p></div>
+            <div className="job-content"><h3>Scrum Master</h3><p className="company">Parentiv</p><p>Led daily ceremonies, Jira workflows, sprint delivery, stakeholder communication, staff onboarding, helpdesk support, and Slack development automation.</p></div>
             <div className="job-number">02</div>
           </article>
           <article className="job">
             <div className="job-meta"><span>2020 — 2021</span></div>
-            <div className="job-content"><h3>Application Developer</h3><p className="company">Software technology company</p><p>Built Android, iOS, web, and admin experiences with Flutter and Dart, backed by Firebase, Cloud Functions, Google Cloud, analytics, testing, and automated delivery.</p></div>
+            <div className="job-content"><h3>Application Developer</h3><p className="company">Parentiv</p><p>Built Android, iOS, web, and admin experiences with Flutter and Dart, backed by Firebase, Cloud Functions, Google Cloud, analytics, testing, and automated delivery.</p></div>
             <div className="job-number">03</div>
           </article>
+        </div>
+      </section>
+
+      <section className="section journey" id="journey">
+        <div className="journey-inner">
+          <div className="journey-heading">
+            <div><p className="kicker">My journey</p><h2>From Nepal<br />to <em>Darwin.</em></h2></div>
+            <p>I moved to Australia in search of opportunity—to deepen my education, grow through new challenges, and build a career where technology makes a practical difference for people.</p>
+          </div>
+          <div className="journey-chapters">
+            {journeyChapters.map((chapter, index) => {
+              return <button key={chapter.title} type="button" className="journey-card" onClick={() => setSelectedJourney(index)} aria-haspopup="dialog" aria-label={`Open story: ${chapter.title}`}>
+                <span className="journey-face journey-front">
+                  <span className="journey-meta"><b>{String(index + 1).padStart(2, "0")}</b><small>{chapter.period}</small></span>
+                  <span><h3>{chapter.title}</h3><p>{chapter.summary}</p></span>
+                  <em>Open chapter ↗</em>
+                </span>
+              </button>;
+            })}
+          </div>
+          {selectedJourneyChapter && selectedJourney !== null && (
+            <div className="journey-modal" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setSelectedJourney(null); }}>
+              <article className={`journey-story journey-story-${selectedJourney + 1}`} role="dialog" aria-modal="true" aria-labelledby="journey-story-title">
+                <button className="journey-story-close" type="button" onClick={() => setSelectedJourney(null)} aria-label="Close journey chapter">×</button>
+                <span className="journey-meta"><b>{String(selectedJourney + 1).padStart(2, "0")}</b><small>{selectedJourneyChapter.period}</small></span>
+                <div className="journey-story-grid">
+                  <div><span className="journey-story-label">My journey</span><h3 id="journey-story-title">{selectedJourneyChapter.title}</h3></div>
+                  <div className="journey-story-body"><small>What this chapter built</small><p>{selectedJourneyChapter.reflection}</p><div className="journey-tags">{selectedJourneyChapter.details.map(detail => <span key={detail}>{detail}</span>)}</div></div>
+                </div>
+              </article>
+            </div>
+          )}
         </div>
       </section>
 
@@ -212,40 +305,54 @@ export default function Home() {
       </section>
 
       <section className="section credentials" id="credentials">
-        <div className="credential-count"><span>Verified learning</span><strong>64</strong><small>digital credentials</small></div>
+        <div className="credentials-inner"><div className="credential-count"><span>Verified learning</span><strong>64</strong><small>digital credentials</small></div>
         <div className="credential-copy">
           <p className="kicker">ACS + Skillsoft</p>
           <h2>Always learning.<br /><em>Always current.</em></h2>
           <p>My credential wallet reflects continuous development across technical support, modern IT, delivery, and professional effectiveness—issued through Skillsoft and the Australian Computer Society.</p>
           <div className="credential-topics"><span>CompTIA A+ hardware</span><span>Cybersecurity</span><span>Project management</span><span>Agile</span><span>Machine learning</span><span>Career development</span></div>
           <a className="button primary credential-link" href="https://acs-preview.digitalbadges.skillsoft.com/profile/prashilkoirala849784/wallet" target="_blank" rel="noreferrer">View verified badge wallet <span>↗</span></a>
-        </div>
+        </div></div>
       </section>
 
       <section className="section about" id="about">
-        <div><p className="kicker">About me</p><h2>Technology works best<br />when people feel <em>supported.</em></h2></div>
+        <div className="about-inner"><div><p className="kicker">About me</p><h2>Technology works best<br />when people feel <em>supported.</em></h2></div>
         <div className="about-copy">
           <p>I bring together hands-on technical support, software development, and delivery leadership. My support work reaches users across Darwin and remote communities throughout East Arnhem Land, where dependable technology and clear communication make a meaningful difference.</p>
           <p>Based in Darwin, I hold a Master of Information Technology from Charles Darwin University and a Bachelor of Science in Computer Science and Information Technology from Tribhuvan University.</p>
           <p>I&apos;m at my best when I can listen carefully, make a technical problem feel manageable, and leave the person—and the system—in a better place than I found them.</p>
           <div className="about-values" aria-label="How I work"><span>Calm under pressure</span><span>Curious by default</span><span>Reliable follow-through</span></div>
           <div className="education"><div><span>2024</span><strong>Master of Information Technology</strong><small>Charles Darwin University</small></div><div><span>2021</span><strong>BSc Computer Science &amp; IT</strong><small>Tribhuvan University</small></div></div>
-        </div>
+        </div></div>
       </section>
 
       <footer>
-        <p className="kicker light">Have a role or project in mind?</p>
+        <div className="footer-inner"><p className="kicker light">Have a role or project in mind?</p>
         <h2>Let&apos;s make technology<br /><em>feel effortless.</em></h2>
         <div className="footer-links">
           <a href="mailto:namikazeprashil@gmail.com" aria-label="Email Prashil"><span className="footer-link-icon" aria-hidden="true">✉</span><span className="footer-link-copy"><small>Write to me</small><strong>Email</strong></span><span className="footer-link-arrow" aria-hidden="true">↗</span></a>
           <a href="tel:+61457859515" aria-label="Call Prashil"><span className="footer-link-icon" aria-hidden="true">☎</span><span className="footer-link-copy"><small>Start a conversation</small><strong>Call</strong></span><span className="footer-link-arrow" aria-hidden="true">↗</span></a>
           <a href="https://www.linkedin.com/in/prashil-koirala-847777a0/" target="_blank" rel="noreferrer" aria-label="Visit Prashil's LinkedIn"><span className="footer-link-icon linkedin-icon" aria-hidden="true">in</span><span className="footer-link-copy"><small>Connect professionally</small><strong>LinkedIn</strong></span><span className="footer-link-arrow" aria-hidden="true">↗</span></a>
         </div>
-        <div className="footer-base"><span>Prashil Koirala · Darwin, Australia</span><a href="#top">Back to top ↑</a></div>
+        <div className="footer-base"><span>Prashil Koirala · Darwin, Australia</span><a href="#top">Back to top ↑</a></div></div>
         <div className="footer-acknowledgement">
-          <p>I acknowledge the Larrakia people as the Traditional Custodians of Darwin, where I live and work, and pay my respects to Elders past and present. I also acknowledge the Traditional Custodians of the lands and waters across the East Arnhem Land communities I support.</p>
-          <span>© 2026 Prashil Koirala</span>
+          <div className="footer-ack-inner"><p>I acknowledge the Larrakia people as the Traditional Custodians of Darwin, where I live and work, and pay my respects to Elders past and present. I also acknowledge the Traditional Custodians of the lands and waters across the East Arnhem Land communities I support.</p>
+          <span>© 2026 Prashil Koirala</span></div>
         </div>
+        <section className="support-areas" aria-label="Areas supported">
+          <details>
+            <summary>
+              <span><small>Remote support footprint</small>Areas supported across the Territory</span>
+              <strong>30 locations <i aria-hidden="true">+</i></strong>
+            </summary>
+            <div className="support-areas-grid">
+              {["East Arnhem", "Big Rivers", "Katherine", "Victoria Daly"].map(region => <div key={region}>
+                <h3>{region}</h3>
+                <p>{communities.filter(community => community.region === region).map(community => community.name).join(" · ")}</p>
+              </div>)}
+            </div>
+          </details>
+        </section>
       </footer>
     </main>
   );
